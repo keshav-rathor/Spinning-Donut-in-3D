@@ -2,15 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-void display( const char *output, float &a, float &b) {
-    printf("\x1b[H");
-    for (int i = 0; i < 1761; i++) {
-        //1760 corresponds to buffer size
-        putchar(i % 80 ? output[i] : 10);
-        a += 0.00004;
-        b += 0.00002;
-    }
-}
+
 
 void render(float a, float b, int buffer_size, float *zBuffer, char *output, int height, int width) {
     int outer_size = width / 40;
@@ -49,6 +41,15 @@ void render(float a, float b, int buffer_size, float *zBuffer, char *output, int
                 output[o] = lum_chars[lum > 0 ? lum : 0];
             }
         }
+    }
+}
+void display( const char *output, float &a, float &b) {
+    printf("\x1b[H");
+    for (int i = 0; i < 1761; i++) {
+        //1760 corresponds to buffer size
+        putchar(i % 80 ? output[i] : 10);
+        a += 0.00004;
+        b += 0.00002;
     }
 }
 int main() {
